@@ -6,3 +6,11 @@ export const fetchProducts = async () => {
   const response = await axios.get(url)
   return response.data
 }
+
+export const fetchProductById = async (id: number) => {
+  if (!id) return null
+
+  const url = `${API.BASE_URL}/products/${id}`
+  const response = await axios.get(url)
+  return response.data
+}
