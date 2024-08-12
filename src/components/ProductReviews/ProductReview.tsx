@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Rating,
-  Typography,
-} from '@mui/material'
+import { Avatar, Card, CardContent, CardHeader, Rating, Typography } from '@mui/material'
 
 import { Review } from '../../types/product'
 
@@ -17,17 +9,6 @@ interface ProductReviewProps {
 const ProductReview: React.FunctionComponent<ProductReviewProps> = ({ review }) => {
   return (
     <Card>
-      {/* <Avatar
-        src={`https://robohash.org/${review.reviewerEmail}`}
-        sx={{ backgroundColor: 'lightblue' }}
-      />
-      <Rating value={review.rating} size='small' readOnly />
-      <Box>
-        <Typography variant='body2'>{review.reviewerName}</Typography>
-      </Box>
-      <div>
-        <Typography variant='h6'>{review.comment}</Typography>
-      </div> */}
       <CardHeader
         avatar={
           <Avatar
