@@ -21,9 +21,7 @@ const ProductPage = () => {
         <Grid item xs={8}>
           <Stack spacing={1}>
             <Typography variant='h2'>{product.title}</Typography>
-            <div
-              style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}
-            >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <ProductRating rating={product.rating} size='large' />
               <Typography variant='body2' color='text.secondary'>
                 ({product.reviews.length} reviews)
@@ -32,7 +30,7 @@ const ProductPage = () => {
             <Typography variant='h4'>${product.price}</Typography>
             <div style={{ display: 'flex', gap: 8 }}>
               {product.tags.map((tag) => (
-                <Chip key={tag} label={tag} />
+                <Chip key={tag} label={tag} color='info' />
               ))}
             </div>
             <Typography variant='body1'>{product.description}</Typography>
