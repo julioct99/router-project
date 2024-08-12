@@ -9,6 +9,7 @@ import {
 
 import { Link } from 'react-router-dom'
 import { Product } from '../../types/product'
+import ProductRating from '../ProductRating'
 
 interface ProductCardProps {
   product: Product
@@ -39,7 +40,7 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = ({ product }) => 
               ${product.price}
             </Typography>
           </div>
-          <Rating value={product.rating} readOnly size='small' />
+          <ProductRating rating={product.rating} />
         </CardContent>
       </CardActionArea>
     </Card>

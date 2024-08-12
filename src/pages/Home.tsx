@@ -1,15 +1,14 @@
 import { Product } from '../types/product'
 import { ProductList } from '../components/ProductList'
+import { Typography } from '@mui/material'
 import { useLoaderData } from 'react-router-dom'
 
 const Home = () => {
   const products = useLoaderData() as Product[]
 
-  console.log({ products })
-
   return (
     <>
-      <h1>Home page</h1>
+      <Typography variant='h2'>Products</Typography>
       <ProductList products={products} />
     </>
   )

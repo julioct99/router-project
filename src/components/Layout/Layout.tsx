@@ -5,7 +5,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
-  return <Container>{children}</Container>
+  return <Container sx={{ padding: '32px 0' }}>{children}</Container>
 }
 
 export default Layout
