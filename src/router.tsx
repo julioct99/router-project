@@ -1,9 +1,9 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { fetchProductById, fetchProducts } from './api/fetchers'
 
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-import Product from './pages/Product'
+import HomePage from './pages/Home'
+import NotFoundPage from './pages/NotFound'
+import ProductPage from './pages/Product'
 
 const router = createBrowserRouter([
   {
@@ -12,17 +12,17 @@ const router = createBrowserRouter([
   },
   {
     path: '/products',
-    element: <Home />,
+    element: <HomePage />,
     loader: fetchProducts,
   },
   {
     path: '/products/:id',
-    element: <Product />,
+    element: <ProductPage />,
     loader: ({ params }) => fetchProductById(params?.id ? +params.id : 0),
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: <NotFoundPage />,
   },
 ])
 

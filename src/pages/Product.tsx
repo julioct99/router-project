@@ -1,14 +1,16 @@
+import { Product } from '../types/product'
 import { useLoaderData } from 'react-router-dom'
 
-const Product = () => {
-  const product = useLoaderData()
+const ProductPage = () => {
+  const product = useLoaderData() as Product
+
+  console.log({ product })
 
   return (
     <>
       <h1>Product detail</h1>
-      <pre>{JSON.stringify(product, null, 2)}</pre>
     </>
   )
 }
 
-export default Product
+export default ProductPage
