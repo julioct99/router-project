@@ -4,6 +4,7 @@ import { fetchProductById, fetchProducts } from './api/fetchers'
 import HomePage from './pages/Home'
 import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
+import { getQueryParamsFromUrl } from './utils/routing'
 
 const router = createBrowserRouter([
   {
@@ -13,12 +14,15 @@ const router = createBrowserRouter([
   {
     path: '/products',
     element: <HomePage />,
-    loader: fetchProducts,
+    loader: ({ request }) => {
+      const queryParams = getQueryParamsFromUrl(request.url)
+      return fetchProducts(queryParams)
+    },
   },
   {
     path: '/products/:id',
     element: <ProductPage />,
-    loader: ({ params }) => fetchProductById(params?.id ? +params.id : 0),
+    loader: ({ params }) => fetchProductById(params?.id ? +params.id : undefined),
   },
   {
     path: '*',
