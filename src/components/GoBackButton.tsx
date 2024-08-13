@@ -6,7 +6,7 @@ const GoBackButton = () => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(-1)
+    navigate('/products')
   }
 
   return (

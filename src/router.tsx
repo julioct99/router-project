@@ -2,6 +2,7 @@ import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { fetchProductById, fetchProducts } from './api/fetchers'
 
 import HomePage from './pages/Home'
+import NewProductPage from './pages/NewProduct'
 import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
 import { getQueryParamsFromUrl } from './utils/routing'
@@ -17,6 +18,16 @@ const router = createBrowserRouter([
     loader: ({ request }) => {
       const queryParams = getQueryParamsFromUrl(request.url)
       return fetchProducts(queryParams)
+    },
+  },
+  {
+    path: '/products/new',
+    element: <NewProductPage />,
+    action: async ({ request }) => {
+      const formData = await request.formData()
+      const dataObject = Object.fromEntries(formData.entries())
+      console.log({ dataObject })
+      return {}
     },
   },
   {
