@@ -2,7 +2,7 @@ import { Box, Rating, Typography } from '@mui/material'
 
 interface ProductRatingProps {
   rating: number
-  size: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large'
 }
 
 const ProductRating: React.FunctionComponent<ProductRatingProps> = ({

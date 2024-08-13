@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Rating,
-  Typography,
-} from '@mui/material'
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 
 import { Link } from 'react-router-dom'
 import { Product } from '../../types/product'
@@ -18,6 +11,7 @@ interface ProductCardProps {
 const ProductCard: React.FunctionComponent<ProductCardProps> = ({ product }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
+      {/* @ts-expect-error: The 'LinkComponent' prop is not recognized by the 'CardActionArea' prop interface */}
       <CardActionArea LinkComponent={Link} to={`/products/${product.id}`}>
         <CardMedia
           component='img'
