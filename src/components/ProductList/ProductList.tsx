@@ -22,7 +22,7 @@ const ProductList: React.FunctionComponent<ProductListProps> = ({ products }) =>
       <SearchBar defaultValue={searchParams.get('search') || ''} onSearch={testSearch} />
       <Grid container spacing={3} style={{ marginLeft: '-24px' }}>
         {products.map((product) => (
-          <Grid item key={product.id} xs={3}>
+          <Grid item key={product.id} lg={3} md={4} sm={6} xs={12}>
             <ProductCard product={product} />
           </Grid>
         ))}

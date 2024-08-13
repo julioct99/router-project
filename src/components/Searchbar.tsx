@@ -27,19 +27,20 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({
   }
 
   return (
-    <Box width='100%' display='flex'>
+    <Box width='100%' display='flex' gap={2}>
       <Input
         inputRef={inputRef}
         defaultValue={defaultValue}
         onKeyDown={handleKeyDown}
         sx={{ flexGrow: 1 }}
+        placeholder='Search...'
         startAdornment={
           <InputAdornment position='start'>
             <Search />
           </InputAdornment>
         }
       />
-      <Button variant='contained' onClick={handleSearch}>
+      <Button variant='contained' onClick={handleSearch} startIcon={<Search />}>
         Search
       </Button>
     </Box>
