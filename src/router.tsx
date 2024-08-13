@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       const formData = await request.formData()
       const dataObject = Object.fromEntries(formData.entries())
       console.log({ dataObject })
-      return {}
+      return null
     },
   },
   {
