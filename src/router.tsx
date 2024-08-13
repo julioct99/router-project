@@ -1,11 +1,12 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
-import { fetchProductById, fetchProducts } from './api/fetchers'
+import { createProduct, fetchProductById, fetchProducts } from './api/products'
 
 import HomePage from './pages/Home'
 import NewProductPage from './pages/NewProduct'
 import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
 import { getQueryParamsFromUrl } from './utils/routing'
+import { toast } from 'react-toastify'
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,11 @@ const router = createBrowserRouter([
     action: async ({ request }) => {
       const formData = await request.formData()
       const dataObject = Object.fromEntries(formData.entries())
-      console.log({ dataObject })
-      return null
+      toast.success('New product created!')
+      toast.info(<pre>{JSON.stringify(dataObject, null, 2)}</pre>)
+
+      const response = await createProduct(dataObject)
+      return response
     },
   },
   {

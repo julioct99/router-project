@@ -25,3 +25,9 @@ export const fetchProductById = async (id: number | undefined) => {
   const response = await axios.get<Product>(url)
   return response.data
 }
+
+export const createProduct = async (product: Partial<Product>) => {
+  const url = `${API.BASE_URL}/products/add`
+  const response = await axios.post<Partial<Product>>(url, product)
+  return response.data
+}
