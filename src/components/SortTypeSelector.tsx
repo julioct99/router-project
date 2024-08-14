@@ -45,12 +45,11 @@ const SortTypeSelector: React.FunctionComponent<SortTypeSelectorProps> = ({
 
   return (
     <FormControl sx={{ width: 250 }}>
-      <InputLabel id='demo-simple-select-label'>Sort by</InputLabel>
+      <InputLabel id='sort-type-select'>Sort by</InputLabel>
       <Select
         defaultValue={formattedDefaultValue}
         onChange={handleChange}
-        labelId='demo-simple-select-label'
-        id='demo-simple-select'
+        labelId='sort-type-select'
         label='Sort by'
       >
         <MenuItem value='default:default'>None</MenuItem>

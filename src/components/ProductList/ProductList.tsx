@@ -31,7 +31,7 @@ const ProductList: React.FunctionComponent<ProductListProps> = ({ products }) =>
         onSearch={handleSearch}
       />
       <SortTypeSelector defaultValue={getSortValue()} />
-      <Grid container spacing={3} style={{ marginLeft: '-24px' }}>
+      <Grid container spacing={3} style={{ marginLeft: '-24px' }} alignItems='stretch'>
         {products.map((product) => (
           <Grid item key={product.id} lg={3} md={4} sm={6} xs={12}>
             <ProductCard product={product} />

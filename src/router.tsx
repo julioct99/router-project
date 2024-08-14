@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     action: async ({ request }) => {
       const formData = await request.formData()
       const dataObject = Object.fromEntries(formData.entries())
-      toast.success('New product created!')
+      toast.success('New product created! (MOCK)')
       toast.info(<pre>{JSON.stringify(dataObject, null, 2)}</pre>)
 
       const response = await createProduct(dataObject)
