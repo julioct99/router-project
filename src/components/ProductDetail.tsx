@@ -10,14 +10,19 @@ interface ProductDetailProps {
 const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ product }) => {
   return (
     <Grid container spacing={2} sx={{ marginTop: 2 }}>
-      <Grid item xs={12} md={6} lg={4} sx={{ display: 'flex' }}>
+      <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
         <img
-          style={{ maxWidth: '100%', maxHeight: 450, margin: '0 auto' }}
+          style={{
+            maxWidth: '100%',
+            maxHeight: 500,
+            objectFit: 'cover',
+            margin: '0 auto',
+          }}
           src={product.images[0]}
           alt={product.title}
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={8}>
+      <Grid item xs={12} md={6}>
         <Stack spacing={1}>
           <Typography variant='h2'>{product.title}</Typography>
           <ProductRating rating={product.rating} size='large' />

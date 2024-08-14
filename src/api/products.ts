@@ -1,24 +1,27 @@
-import { Product, ProductListResponse } from '../types/product'
+import { Product, ProductListQueryParams, ProductListResponse } from '../types/product'
 
 import { API } from './settings'
+import { addQueryParamToUrl } from '../utils/api'
 import axios from 'axios'
-
-interface ProductListQueryParams {
-  search?: string
-}
 
 export const fetchProducts = async (queryParams: ProductListQueryParams) => {
   let url = `${API.BASE_URL}/products`
 
   if (queryParams.search) {
-    url += `/search?q=${queryParams.search}`
+    url += `/search`
+    url = addQueryParamToUrl(url, 'q', queryParams.search)
+  }
+
+  if (queryParams.sortBy) {
+    url = addQueryParamToUrl(url, 'sortBy', queryParams.sortBy)
+    url = addQueryParamToUrl(url, 'order', queryParams.order || 'asc')
   }
 
   const response = await axios.get<ProductListResponse>(url)
   return response.data.products
 }
 
-export const fetchProductById = async (id: number | undefined) => {
+export const fetchProductById = async (id: number | string | undefined) => {
   if (!id) return null
 
   const url = `${API.BASE_URL}/products/${id}`

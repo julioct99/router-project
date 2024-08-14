@@ -50,3 +50,9 @@ export interface Meta {
   barcode: string
   qrCode: string
 }
+
+export interface ProductListQueryParams {
+  search?: string
+  sortBy?: 'title' | 'price'
+  order?: 'asc' | 'desc'
+}

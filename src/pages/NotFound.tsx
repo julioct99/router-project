@@ -1,5 +1,11 @@
+import Layout from '../components/layout/Layout'
+
 const NotFoundPage = () => {
-  return <h1>404: Not found</h1>
+  return (
+    <Layout>
+      <h1>404: Not found</h1>
+    </Layout>
+  )
 }
 
 export default NotFoundPage

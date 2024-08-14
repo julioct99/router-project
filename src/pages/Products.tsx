@@ -6,7 +6,7 @@ import Layout from '../components/layout/Layout'
 import { Product } from '../types/product'
 import { ProductList } from '../components/ProductList'
 
-const Home = () => {
+const ProductsPage = () => {
   const products = useLoaderData() as Product[]
 
   return (
@@ -26,4 +26,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ProductsPage

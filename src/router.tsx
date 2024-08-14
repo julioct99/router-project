@@ -1,10 +1,10 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { createProduct, fetchProductById, fetchProducts } from './api/products'
 
-import HomePage from './pages/Home'
 import NewProductPage from './pages/NewProduct'
 import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
+import ProductsPage from './pages/Products'
 import { getQueryParamsFromUrl } from './utils/routing'
 import { toast } from 'react-toastify'
 
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/products',
-    element: <HomePage />,
+    element: <ProductsPage />,
     loader: ({ request }) => {
       const queryParams = getQueryParamsFromUrl(request.url)
       return fetchProducts(queryParams)
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   {
     path: '/products/:id',
     element: <ProductPage />,
-    loader: ({ params }) => fetchProductById(params?.id ? +params.id : undefined),
+    loader: ({ params }) => fetchProductById(params.id),
   },
   {
     path: '*',
