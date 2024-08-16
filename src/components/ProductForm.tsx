@@ -1,20 +1,13 @@
 import { Button, TextField } from '@mui/material'
 
 import { Add } from '@mui/icons-material'
-import { createProduct } from '../api/products'
-import { toast } from 'react-toastify'
+import { createProductFromFormData } from '../utils/products'
 
 const ProductForm = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const dataObject = Object.fromEntries(formData.entries())
-
-    toast.success('New product created! (MOCK)')
-    toast.info(<pre>{JSON.stringify(dataObject, null, 2)}</pre>)
-
-    const response = await createProduct(dataObject)
-    return response
+    await createProductFromFormData(formData)
   }
 
   return (
