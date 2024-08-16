@@ -1,11 +1,10 @@
 import { Button, TextField } from '@mui/material'
 
 import { Add } from '@mui/icons-material'
-import { Form } from 'react-router-dom'
 
 const ProductForm = () => {
   return (
-    <Form
+    <form
       method='post'
       style={{
         display: 'flex',
@@ -19,7 +18,7 @@ const ProductForm = () => {
       <Button variant='contained' type='submit' startIcon={<Add />}>
         Create product
       </Button>
-    </Form>
+    </form>
   )
 }
 

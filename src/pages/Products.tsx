@@ -1,13 +1,14 @@
 import { Fab, Typography } from '@mui/material'
-import { Link, useLoaderData } from 'react-router-dom'
 
 import { Add } from '@mui/icons-material'
 import Layout from '../components/layout/Layout'
+import { Link } from '@tanstack/react-router'
 import { Product } from '../types/product'
 import { ProductList } from '../components/ProductList'
+import { productsRoute } from '../router'
 
 const ProductsPage = () => {
-  const products = useLoaderData() as Product[]
+  const products = productsRoute.useLoaderData() as Product[]
 
   return (
     <Layout>

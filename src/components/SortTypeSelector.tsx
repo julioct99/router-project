@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 
-import { useSearchParams } from 'react-router-dom'
+import { productsRoute } from '../router'
 
 export type SortDirection = 'asc' | 'desc' | 'default'
 export type SortType = 'title' | 'price' | 'default'
@@ -23,22 +23,22 @@ interface SortTypeSelectorProps {
 const SortTypeSelector: React.FunctionComponent<SortTypeSelectorProps> = ({
   defaultValue = { direction: 'default', type: 'default' },
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams()
+  // TODO tanstack router
+  // const [searchParams, setSearchParams] = useSearchParams()
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    const value = event.target.value as string
-
-    if (value === 'default:default') {
-      searchParams.delete('sortBy')
-      searchParams.delete('order')
-      setSearchParams(searchParams)
-      return
-    }
-
-    const [type, direction] = value.split(':') as [SortType, SortDirection]
-    searchParams.set('sortBy', type)
-    searchParams.set('order', direction)
-    setSearchParams(searchParams)
+    // TODO
+    // const value = event.target.value as string
+    // if (value === 'default:default') {
+    //   searchParams.delete('sortBy')
+    //   searchParams.delete('order')
+    //   setSearchParams(searchParams)
+    //   return
+    // }
+    // const [type, direction] = value.split(':') as [SortType, SortDirection]
+    // searchParams.set('sortBy', type)
+    // searchParams.set('order', direction)
+    // setSearchParams(searchParams)
   }
 
   const formattedDefaultValue = `${defaultValue.type}:${defaultValue.direction}`
