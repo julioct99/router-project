@@ -6,8 +6,6 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 
-import { productsRoute } from '../router'
-
 export type SortDirection = 'asc' | 'desc' | 'default'
 export type SortType = 'title' | 'price' | 'default'
 

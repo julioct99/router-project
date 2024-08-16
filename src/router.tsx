@@ -1,62 +1,32 @@
-import {
-  Outlet,
-  createRootRoute,
-  createRoute,
-  createRouter,
-  useLocation,
-  useNavigate,
-} from '@tanstack/react-router'
-import React, { useEffect } from 'react'
+import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
+import { fetchProductById, fetchProducts } from './api/products'
 
 import NotFoundPage from './pages/NotFound'
+import ProductPage from './pages/Product'
 import ProductsPage from './pages/Products'
-import { fetchProducts } from './api/products'
+import RouterRoot from './pages/RouterRoot'
 
-const TanStackRouterDevtools =
-  process.env.NODE_ENV === 'production'
-    ? () => null // Render nothing in production
-    : React.lazy(() =>
-        // Lazy load in development
-        import('@tanstack/router-devtools').then((res) => ({
-          default: res.TanStackRouterDevtools,
-          // For Embedded Mode
-          // default: res.TanStackRouterDevtoolsPanel
-        }))
-      )
-
-const RootComponent: React.FC = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  useEffect(() => {
-    if (location.pathname === '/') {
-      navigate({ to: '/products' })
-    }
-  }, [navigate, location])
-
-  return (
-    <>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  )
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
 }
 
 const rootRoute = createRootRoute({
-  component: () => <RootComponent />,
-  notFoundComponent: () => <NotFoundPage />,
+  component: RouterRoot,
+  notFoundComponent: NotFoundPage,
 })
 
 export const productsRoute = createRoute({
-  path: '/products',
-  component: () => <ProductsPage />,
-  loader: async ({ location }) => {
-    console.log({ location })
-    return fetchProducts(location.search)
-    // const queryParams = getQueryParamsFromUrl(context.location?.href)
-    // return fetchProducts(queryParams)
-  },
+  path: 'products',
   getParentRoute: () => rootRoute,
+})
+
+export const productsIndexRoute = createRoute({
+  path: '/',
+  component: ProductsPage,
+  getParentRoute: () => productsRoute,
+  loader: async ({ location }) => fetchProducts(location.search),
 })
 
 // const newProductRoute = createRoute({
@@ -78,22 +48,16 @@ export const productsRoute = createRoute({
 //   getParentRoute: () => productsRoute,
 // })
 
-// const productDetailsRoute = createRoute({
-//   path: '/products/:id',
-//   component: ProductPage,
-//   loader: async ({ params }) => {
-//     return fetchProductById(params.id)
-//   },
-//   getParentRoute: () => productsRoute,
-// })
+export const productDetailsRoute = createRoute({
+  getParentRoute: () => productsRoute,
+  path: '$id',
+  component: ProductPage,
+  loader: async ({ params }) => fetchProductById(params.id),
+})
 
-// const notFoundRoute = createRoute({
-//   path: '*',
-//   component: NotFoundPage,
-//   getParentRoute: () => rootRoute,
-// })
-
-const routeTree = rootRoute.addChildren([productsRoute])
+const routeTree = rootRoute.addChildren([
+  productsRoute.addChildren([productsIndexRoute, productDetailsRoute]),
+])
 
 const router = createRouter({
   routeTree,

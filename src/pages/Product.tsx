@@ -1,11 +1,11 @@
 import { Box } from '@mui/material'
 import Layout from '../components/layout/Layout'
+import { Product } from '../types/product'
 import ProductDetail from '../components/ProductDetail'
+import { productDetailsRoute } from '../router'
 
 const ProductPage = () => {
-  // TODO
-  // const product = useLoaderData() as Product
-  const product: unknown = {}
+  const product = productDetailsRoute.useLoaderData() as Product
 
   return (
     <Layout>

@@ -5,10 +5,10 @@ import Layout from '../components/layout/Layout'
 import { Link } from '@tanstack/react-router'
 import { Product } from '../types/product'
 import { ProductList } from '../components/ProductList'
-import { productsRoute } from '../router'
+import { productsIndexRoute } from '../router'
 
 const ProductsPage = () => {
-  const products = productsRoute.useLoaderData() as Product[]
+  const products = productsIndexRoute.useLoaderData() as Product[]
 
   return (
     <Layout>
