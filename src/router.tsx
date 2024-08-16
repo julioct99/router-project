@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
 import { fetchProductById, fetchProducts } from './api/products'
 
+import NewProductPage from './pages/NewProduct'
 import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
 import ProductsPage from './pages/Products'
@@ -18,35 +19,22 @@ const rootRoute = createRootRoute({
 })
 
 export const productsRoute = createRoute({
-  path: 'products',
   getParentRoute: () => rootRoute,
+  path: 'products',
 })
 
 export const productsIndexRoute = createRoute({
+  getParentRoute: () => productsRoute,
   path: '/',
   component: ProductsPage,
-  getParentRoute: () => productsRoute,
   loader: async ({ location }) => fetchProducts(location.search),
 })
 
-// const newProductRoute = createRoute({
-//   path: '/products/new',
-//   component: NewProductPage,
-//   // action: async ({ context }) => {
-//    // // TODO
-//   //   const formData = new FormData(context.event.target)
-//   //   const dataObject = Object.fromEntries(formData.entries())
-
-//   //   // Show toast notifications
-//   //   toast.success('New product created! (MOCK)')
-//   //   toast.info(<pre>{JSON.stringify(dataObject, null, 2)}</pre>)
-
-//   //   // Call API to create the product
-//   //   const response = await createProduct(dataObject)
-//   //   return response
-//   // },
-//   getParentRoute: () => productsRoute,
-// })
+export const newProductRoute = createRoute({
+  getParentRoute: () => productsRoute,
+  path: 'new',
+  component: NewProductPage,
+})
 
 export const productDetailsRoute = createRoute({
   getParentRoute: () => productsRoute,
@@ -56,7 +44,7 @@ export const productDetailsRoute = createRoute({
 })
 
 const routeTree = rootRoute.addChildren([
-  productsRoute.addChildren([productsIndexRoute, productDetailsRoute]),
+  productsRoute.addChildren([productsIndexRoute, productDetailsRoute, newProductRoute]),
 ])
 
 const router = createRouter({
