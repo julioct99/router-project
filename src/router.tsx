@@ -1,4 +1,4 @@
-import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { fetchProductById, fetchProducts } from './api/products'
 
 import NewProductPage from './pages/NewProduct'
