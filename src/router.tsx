@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom'
 import { fetchProductById, fetchProducts } from './api/products'
 
 import NewProductPage from './pages/NewProduct'
@@ -20,21 +20,19 @@ const router = createBrowserRouter([
       const queryParams = getQueryParamsFromUrl(request.url)
       return fetchProducts(queryParams)
     },
-    children: [
-      {
-        path: 'new',
-        element: <NewProductPage />,
-        action: async ({ request }) => {
-          const formData = await request.formData()
-          return createProductFromFormData(formData)
-        },
-      },
-      {
-        path: ':id',
-        element: <ProductPage />,
-        loader: ({ params }) => fetchProductById(params.id),
-      },
-    ],
+  },
+  {
+    path: '/products/new',
+    element: <NewProductPage />,
+    action: async ({ request }) => {
+      const formData = await request.formData()
+      return createProductFromFormData(formData)
+    },
+  },
+  {
+    path: '/products/:id',
+    element: <ProductPage />,
+    loader: ({ params }) => fetchProductById(params.id),
   },
   {
     path: '*',
