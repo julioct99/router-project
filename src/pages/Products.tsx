@@ -14,7 +14,7 @@ const ProductsPage = () => {
     <Layout>
       <Typography variant='h2'>Products</Typography>
       <ProductList products={products} />
-      <Link to='new'>
+      <Link to='/products/new'>
         <Fab
           title='New product'
           sx={{ position: 'fixed', bottom: 32, right: 32 }}
