@@ -1,10 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { NewProductPage, NotFoundPage, ProductPage, ProductsPage } from './pages'
 import { fetchProductById, fetchProducts } from './api/products'
 
-import NewProductPage from './pages/NewProduct'
-import NotFoundPage from './pages/NotFound'
-import ProductPage from './pages/Product'
-import ProductsPage from './pages/Products'
 import { createProductFromFormData } from './utils/products'
 import { getQueryParamsFromUrl } from './utils/routing'
 
