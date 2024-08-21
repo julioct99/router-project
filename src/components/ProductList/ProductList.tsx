@@ -4,16 +4,21 @@ import SortTypeSelector, { SortValue } from '../SortTypeSelector'
 import { Product } from '../../types/product'
 import ProductCard from './ProductCard'
 import SearchBar from '../Searchbar'
+import { productsIndexRoute } from '../../router'
 
 interface ProductListProps {
   products: Product[]
 }
 
 const ProductList: React.FunctionComponent<ProductListProps> = ({ products }) => {
-  // const [searchParams, setSearchParams] = useSearchParams()
-  // TODO
-  const searchParams = new URLSearchParams()
-  const setSearchParams = (x) => {}
+  const navigate = productsIndexRoute.useNavigate()
+  const search = productsIndexRoute.useSearch()
+
+  const searchParams = new URLSearchParams(search)
+
+  const setSearchParams = (search: URLSearchParams) => {
+    navigate({ search: Object.fromEntries(search) })
+  }
 
   const handleSearch = (value: string) => {
     value ? searchParams.set('search', value) : searchParams.delete('search')
