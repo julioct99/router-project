@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFound'
 import ProductPage from './pages/Product'
 import ProductsPage from './pages/Products'
 import RouterRoot from './pages/RouterRoot'
+import { productSearchSchema } from './types/product'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -28,6 +29,7 @@ export const productsIndexRoute = createRoute({
   path: '/',
   component: ProductsPage,
   loader: async ({ location }) => fetchProducts(location.search),
+  validateSearch: productSearchSchema.parse,
 })
 
 export const newProductRoute = createRoute({

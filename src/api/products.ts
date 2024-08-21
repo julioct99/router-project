@@ -1,10 +1,10 @@
-import { Product, ProductListQueryParams, ProductListResponse } from '../types/product'
+import { Product, ProductListResponse, ProductSearch } from '../types/product'
 
 import { API } from './settings'
 import { addQueryParamToUrl } from '../utils/api'
 import axios from 'axios'
 
-export const fetchProducts = async (queryParams: ProductListQueryParams = {}) => {
+export const fetchProducts = async (queryParams: ProductSearch = {}) => {
   let url = `${API.BASE_URL}/products`
 
   if (queryParams.search) {

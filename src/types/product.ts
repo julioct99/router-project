@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 export interface ProductListResponse {
   products: Product[]
   total: number
@@ -51,8 +53,10 @@ export interface Meta {
   qrCode: string
 }
 
-export interface ProductListQueryParams {
-  search?: string
-  sortBy?: 'title' | 'price'
-  order?: 'asc' | 'desc'
-}
+export const productSearchSchema = z.object({
+  search: z.string().optional(),
+  sortBy: z.enum(['title', 'price']).optional(),
+  order: z.enum(['asc', 'desc']).optional(),
+})
+
+export type ProductSearch = z.infer<typeof productSearchSchema>
